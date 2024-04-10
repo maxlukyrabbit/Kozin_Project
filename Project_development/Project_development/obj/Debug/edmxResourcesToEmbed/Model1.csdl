@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DevelopmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AssemblyType">
+    <Key>
+      <PropertyRef Name="Id_AssemblyType" />
+    </Key>
+    <Property Name="Id_AssemblyType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameAssemblyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Type" FromRole="AssemblyType" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id_Comment" />
+    </Key>
+    <Property Name="Id_Comment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DescriptionComment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Employee" Type="Int32" Nullable="false" />
+    <Property Name="Id_Task" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Comment_Employee" FromRole="Comment" ToRole="Employee" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Comment_Task" FromRole="Comment" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Dependency">
+    <Key>
+      <PropertyRef Name="IdDependency" />
+    </Key>
+    <Property Name="IdDependency" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDependentTask" Type="Int32" Nullable="false" />
+    <Property Name="IdCodependentTask" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Dependency_Task" FromRole="Dependency" ToRole="Task" />
+    <NavigationProperty Name="Task1" Relationship="Self.FK_Dependency_Task1" FromRole="Dependency" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id_employee" />
+    </Key>
+    <Property Name="Id_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdPost" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Employee" FromRole="Employee" ToRole="Comment" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Employee" FromRole="Employee" ToRole="Task" />
+    <NavigationProperty Name="Task1" Relationship="Self.FK_Task_Employee1" FromRole="Employee" ToRole="Task" />
+    <NavigationProperty Name="Task2" Relationship="Self.FK_Task_Employee2" FromRole="Employee" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Phase">
+    <Key>
+      <PropertyRef Name="Id_Phase" />
+    </Key>
+    <Property Name="Id_Phase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePhase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Phase" FromRole="Phase" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="IdPost" />
+    </Key>
+    <Property Name="IdPost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Priority">
+    <Key>
+      <PropertyRef Name="IdPriority" />
+    </Key>
+    <Property Name="IdPriority" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePriority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Priority" FromRole="Priority" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Release">
+    <Key>
+      <PropertyRef Name="Id_Release" />
+    </Key>
+    <Property Name="Id_Release" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRelease" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="FinishDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Release" FromRole="Release" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id_Task" />
+    </Key>
+    <Property Name="Id_Task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DescriptionTask" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_Developer" Type="Int32" Nullable="false" />
+    <Property Name="Id_Tester" Type="Int32" Nullable="false" />
+    <Property Name="Id_Creator" Type="Int32" Nullable="false" />
+    <Property Name="IdPhase" Type="Int32" Nullable="false" />
+    <Property Name="IdAssemblyType" Type="Int32" Nullable="false" />
+    <Property Name="IdRelease" Type="Int32" Nullable="false" />
+    <Property Name="IdPriority" Type="Int32" Nullable="false" />
+    <Property Name="IdTypeOS" Type="Int32" Nullable="false" />
+    <Property Name="Access" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AssemblyType" Relationship="Self.FK_Task_Type" FromRole="Task" ToRole="AssemblyType" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Task" FromRole="Task" ToRole="Comment" />
+    <NavigationProperty Name="Dependency" Relationship="Self.FK_Dependency_Task" FromRole="Task" ToRole="Dependency" />
+    <NavigationProperty Name="Dependency1" Relationship="Self.FK_Dependency_Task1" FromRole="Task" ToRole="Dependency" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Task_Employee" FromRole="Task" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Task_Employee1" FromRole="Task" ToRole="Employee" />
+    <NavigationProperty Name="Employee2" Relationship="Self.FK_Task_Employee2" FromRole="Task" ToRole="Employee" />
+    <NavigationProperty Name="Phase" Relationship="Self.FK_Task_Phase" FromRole="Task" ToRole="Phase" />
+    <NavigationProperty Name="Priority" Relationship="Self.FK_Task_Priority" FromRole="Task" ToRole="Priority" />
+    <NavigationProperty Name="Release" Relationship="Self.FK_Task_Release" FromRole="Task" ToRole="Release" />
+    <NavigationProperty Name="TypeOS" Relationship="Self.FK_Task_TypeOS" FromRole="Task" ToRole="TypeOS" />
+  </EntityType>
+  <EntityType Name="TypeOS">
+    <Key>
+      <PropertyRef Name="Id_TypeOS" />
+    </Key>
+    <Property Name="Id_TypeOS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameTypeOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_TypeOS" FromRole="TypeOS" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_Task_Type">
+    <End Role="AssemblyType" Type="Self.AssemblyType" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssemblyType">
+        <PropertyRef Name="Id_AssemblyType" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="IdAssemblyType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Id_Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id_Task" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Id_Task" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dependency_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Dependency" Type="Self.Dependency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id_Task" />
+      </Principal>
+      <Dependent Role="Dependency">
+        <PropertyRef Name="IdCodependentTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dependency_Task1">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="Dependency" Type="Self.Dependency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id_Task" />
+      </Principal>
+      <Dependent Role="Dependency">
+        <PropertyRef Name="IdDependentTask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="IdPost" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IdPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Id_Developer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Id_Tester" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Employee2">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Id_Creator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Phase">
+    <End Role="Phase" Type="Self.Phase" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Phase">
+        <PropertyRef Name="Id_Phase" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="IdPhase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Priority">
+    <End Role="Priority" Type="Self.Priority" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Priority">
+        <PropertyRef Name="IdPriority" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="IdPriority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Release">
+    <End Role="Release" Type="Self.Release" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Release">
+        <PropertyRef Name="Id_Release" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="IdRelease" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_TypeOS">
+    <End Role="TypeOS" Type="Self.TypeOS" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOS">
+        <PropertyRef Name="Id_TypeOS" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="IdTypeOS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DevelopmentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AssemblyType" EntityType="Self.AssemblyType" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" />
+    <EntitySet Name="Dependency" EntityType="Self.Dependency" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Phase" EntityType="Self.Phase" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="Priority" EntityType="Self.Priority" />
+    <EntitySet Name="Release" EntityType="Self.Release" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Task" EntityType="Self.Task" />
+    <EntitySet Name="TypeOS" EntityType="Self.TypeOS" />
+    <AssociationSet Name="FK_Task_Type" Association="Self.FK_Task_Type">
+      <End Role="AssemblyType" EntitySet="AssemblyType" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Employee" Association="Self.FK_Comment_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Task" Association="Self.FK_Comment_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dependency_Task" Association="Self.FK_Dependency_Task">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="Dependency" EntitySet="Dependency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dependency_Task1" Association="Self.FK_Dependency_Task1">
+      <End Role="Task" EntitySet="Task" />
+      <End Role="Dependency" EntitySet="Dependency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Employee" Association="Self.FK_Task_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Employee1" Association="Self.FK_Task_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Employee2" Association="Self.FK_Task_Employee2">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Phase" Association="Self.FK_Task_Phase">
+      <End Role="Phase" EntitySet="Phase" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Priority" Association="Self.FK_Task_Priority">
+      <End Role="Priority" EntitySet="Priority" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Release" Association="Self.FK_Task_Release">
+      <End Role="Release" EntitySet="Release" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_TypeOS" Association="Self.FK_Task_TypeOS">
+      <End Role="TypeOS" EntitySet="TypeOS" />
+      <End Role="Task" EntitySet="Task" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

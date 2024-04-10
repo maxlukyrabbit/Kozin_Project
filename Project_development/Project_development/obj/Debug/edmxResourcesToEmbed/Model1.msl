@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DevelopmentModelContainer" CdmEntityContainer="DevelopmentEntities">
+    <EntitySetMapping Name="AssemblyType">
+      <EntityTypeMapping TypeName="DevelopmentModel.AssemblyType">
+        <MappingFragment StoreEntitySet="AssemblyType">
+          <ScalarProperty Name="Id_AssemblyType" ColumnName="Id_AssemblyType" />
+          <ScalarProperty Name="NameAssemblyType" ColumnName="NameAssemblyType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="DevelopmentModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Id_Comment" ColumnName="Id_Comment" />
+          <ScalarProperty Name="DescriptionComment" ColumnName="DescriptionComment" />
+          <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+          <ScalarProperty Name="Id_Task" ColumnName="Id_Task" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dependency">
+      <EntityTypeMapping TypeName="DevelopmentModel.Dependency">
+        <MappingFragment StoreEntitySet="Dependency">
+          <ScalarProperty Name="IdDependency" ColumnName="IdDependency" />
+          <ScalarProperty Name="IdDependentTask" ColumnName="IdDependentTask" />
+          <ScalarProperty Name="IdCodependentTask" ColumnName="IdCodependentTask" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="DevelopmentModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Id_employee" ColumnName="Id_employee" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phase">
+      <EntityTypeMapping TypeName="DevelopmentModel.Phase">
+        <MappingFragment StoreEntitySet="Phase">
+          <ScalarProperty Name="Id_Phase" ColumnName="Id_Phase" />
+          <ScalarProperty Name="NamePhase" ColumnName="NamePhase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="DevelopmentModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Priority">
+      <EntityTypeMapping TypeName="DevelopmentModel.Priority">
+        <MappingFragment StoreEntitySet="Priority">
+          <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
+          <ScalarProperty Name="NamePriority" ColumnName="NamePriority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Release">
+      <EntityTypeMapping TypeName="DevelopmentModel.Release">
+        <MappingFragment StoreEntitySet="Release">
+          <ScalarProperty Name="Id_Release" ColumnName="Id_Release" />
+          <ScalarProperty Name="NameRelease" ColumnName="NameRelease" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DevelopmentModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task">
+      <EntityTypeMapping TypeName="DevelopmentModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="Id_Task" ColumnName="Id_Task" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="DescriptionTask" ColumnName="DescriptionTask" />
+          <ScalarProperty Name="Id_Developer" ColumnName="Id_Developer" />
+          <ScalarProperty Name="Id_Tester" ColumnName="Id_Tester" />
+          <ScalarProperty Name="Id_Creator" ColumnName="Id_Creator" />
+          <ScalarProperty Name="IdPhase" ColumnName="IdPhase" />
+          <ScalarProperty Name="IdAssemblyType" ColumnName="IdAssemblyType" />
+          <ScalarProperty Name="IdRelease" ColumnName="IdRelease" />
+          <ScalarProperty Name="IdPriority" ColumnName="IdPriority" />
+          <ScalarProperty Name="IdTypeOS" ColumnName="IdTypeOS" />
+          <ScalarProperty Name="Access" ColumnName="Access" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOS">
+      <EntityTypeMapping TypeName="DevelopmentModel.TypeOS">
+        <MappingFragment StoreEntitySet="TypeOS">
+          <ScalarProperty Name="Id_TypeOS" ColumnName="Id_TypeOS" />
+          <ScalarProperty Name="NameTypeOS" ColumnName="NameTypeOS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

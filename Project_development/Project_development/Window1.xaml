@@ -1,0 +1,99 @@
+﻿<Window x:Class="Project_development.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_development"
+        mc:Ignorable="d"
+        Title="DemonstrationTask" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid Background="#024C68" Margin="0,0,-0.4,0">
+        <ListView x:Name="lstw_SelectTask"  
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+          HorizontalContentAlignment="Stretch" Background="#3AA6D0" Margin="27,63,24,27">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid>
+                            <!-- Общий столбец для левой и правой части -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Левая часть: название, описание и данные о людях -->
+                            <StackPanel x:Name ="stc1" Grid.Column="0" Orientation="Vertical" Background="#62B1D0" Margin="5" Width="400">
+                                <!-- Название -->
+                                <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Designation}" Margin="5" TextWrapping="Wrap"/>
+
+                                <!-- Описание в две строки -->
+                                <TextBlock FontSize="14" Text="{Binding DescriptionTask}" Margin="5" TextWrapping="Wrap"/>
+
+                                <!-- Создатель -->
+                                <TextBlock FontSize="14" Text="Создатель: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock x:Name="Creator" FontSize="14" Text="{Binding Employee.FullName}" Margin="5,0,5,5"/>
+
+                                <!-- Разработчик -->
+                                <TextBlock FontSize="14" Text="Разработчик: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock x:Name="Developer" FontSize="14" Text="{Binding Employee1.FullName}" Margin="5,0,5,5"/>
+
+                                <!-- Тестировщик -->
+                                <TextBlock FontSize="14" Text="Тестировщик: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock x:Name="Tester" FontSize="14" Text="{Binding Employee2.FullName}" Margin="5,0,5,5"/>
+                            </StackPanel>
+
+                            <!-- Правая часть: данные о типе ОС, типе сборки, релизе и приоритете -->
+                            <StackPanel Grid.Column="1" Orientation="Vertical" Background="#62B1D0" Margin="5">
+                                <!-- Тип ОС -->
+                                <TextBlock FontSize="14" Text="Тип ОС: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock FontSize="14" Text="{Binding TypeOS.NameTypeOS}" Margin="5,0,5,5"/>
+
+                                <!-- Тип сборки -->
+                                <TextBlock FontSize="14" Text="Тип сборки: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock FontSize="14" Text="{Binding AssemblyType.NameAssemblyType}" Margin="5,0,5,5"/>
+
+                                <!-- Версия -->
+                                <TextBlock FontSize="14" Text="Версия: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock FontSize="14" Text="{Binding Release.NameRelease}" Margin="5,0,5,5"/>
+
+                                <!-- Приоритет -->
+                                <TextBlock FontSize="14" Text="Приоритет: " Foreground="Gray" Margin="5,2,5,0"/>
+                                <TextBlock FontSize="14" Text="{Binding Priority.NamePriority}" Margin="5,0,5,5"/>
+                            </StackPanel>
+
+                            <!-- Комментарии справа -->
+                            <StackPanel Grid.Column="2" Orientation="Vertical" Width="200" Background="#62B1D0" Margin="5">
+                                <!-- Секция комментариев с ScrollViewer -->
+                                <TextBlock FontSize="16" FontWeight="Bold" Text="Комментарии" Margin="0,10,0,5"/>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="150">
+                                    <ItemsControl ItemsSource="{Binding Id_Comment}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <!-- Пользователь комментария -->
+                                                    <TextBlock FontSize="14" Text="{Binding Employee.Name}" FontWeight="Bold" Margin="5,0,0,0"/>
+
+                                                    <!-- Сам комментарий -->
+                                                    <TextBlock FontSize="14" Text="{Binding Id_Comment}" TextWrapping="Wrap" Margin="5,0,0,0"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+
+                                <!-- Поле ввода для комментария -->
+                                <TextBox x:Name="CommentTextBox" TextWrapping="Wrap" Height="50" Margin="0,10,0,5" VerticalScrollBarVisibility="Auto"/>
+
+                                <!-- Кнопка для добавления комментария -->
+                                <Button Content="Добавить комментарий" Click="AddCommentButton_Click"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="Enter" Content="Вернуться" FontSize="23" HorizontalAlignment="Left" Margin="27,11,0,366"  Background="#62B1D0" VerticalAlignment="Center" Foreground="#024C68" Width="142" Height="43" FontFamily="Segoe UI Semibold" Click="Enter_Click"/>
+    </Grid>
+</Window>
